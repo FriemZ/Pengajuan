@@ -89,6 +89,8 @@
                                                     placeholder="Masukkan Nama">
                                                 <button class="btn btn-primary" type="submit">Cari</button>
                                             </div>
+                                            <div id="nameError" class="text-danger small mt-1"></div>
+                                            <!-- Untuk menampilkan error -->
                                         </form>
                                     </div>
                                     <div class="col-sm-5">
@@ -118,6 +120,8 @@
                                 <label for="userPassword" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="userPassword" name="password">
                             </div>
+                            <div id="passwordError" class="text-danger small mt-1"></div>
+                            <!-- Pesan error tampil di sini -->
                             <button type="submit" class="btn btn-primary w-100 py-8 mb-4">Sign In</button>
                         </form>
                     </div>
@@ -135,6 +139,8 @@
                     searchForm.addEventListener('submit', function(e) {
                         e.preventDefault();
                         const nama = document.getElementById('nama').value;
+                        const errorDiv = document.getElementById('nameError');
+                        errorDiv.textContent = ''; // Clear error setiap submit
 
                         fetch('{{ route('check-name') }}', {
                                 method: 'POST',
@@ -150,21 +156,23 @@
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
+                                    errorDiv.textContent = '';
                                     passwordForm.dataset.userId = data.user_id;
                                     new bootstrap.Modal(document.getElementById('login-modal')).show();
                                 } else {
-                                    alert(data.message || 'Nama tidak ditemukan');
+                                    errorDiv.textContent = data.message || 'Nama tidak ditemukan';
                                 }
                             });
                     });
                 }
-
                 if (passwordForm) {
                     passwordForm.addEventListener('submit', function(e) {
                         e.preventDefault(); // mencegah reload
 
                         const password = document.getElementById('userPassword').value;
                         const userId = this.dataset.userId;
+                        const passwordError = document.getElementById('passwordError');
+                        passwordError.textContent = ''; // Bersihkan error sebelumnya
 
                         fetch("{{ route('check-password') }}", {
                                 method: 'POST',
@@ -180,16 +188,25 @@
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
+                                    passwordError.textContent = '';
                                     window.location.href = data.redirect;
                                 } else {
-                                    alert(data.message || "Password salah");
+                                    if (data.redirect) {
+                                        window.location.href = data.redirect; // Redirect setelah 3x gagal
+                                    } else {
+                                        passwordError.textContent = data.message || "Password salah";
+                                    }
                                 }
                             })
                             .catch(error => {
                                 console.error("Login error:", error);
+                                passwordError.textContent = "Terjadi kesalahan saat login.";
                             });
                     });
                 }
+
+
+                // Password form tetap sama
             });
         </script>
 

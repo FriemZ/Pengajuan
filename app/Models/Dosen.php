@@ -19,6 +19,13 @@ class Dosen extends Model
         return $this->belongsTo(Jurusan::class);
     }
 
+    // Di App\Models\Dosen.php
+    public function jobPosition()
+    {
+        // Contoh jika foreign key adalah job_position_id dan model JobPosition
+        return $this->belongsTo(job::class, 'job_position_id');
+    }
+
 
     public function koordinatorAktif()
     {

@@ -78,72 +78,6 @@
              </ul>
              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                  <div class="d-flex align-items-center justify-content-between py-2 py-lg-0">
-                     <ul class="navbar-nav flex-row  align-items-center justify-content-center d-flex d-lg-none">
-                         <li class="nav-item hover-dd dropdown nav-icon-hover-bg rounded-circle">
-                             <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
-                                 aria-expanded="false">
-                                 <iconify-icon icon="solar:inbox-line-line-duotone"></iconify-icon>
-                                 <div class="notify">
-                                     <span class="heartbit"></span>
-                                     <span class="point"></span>
-                                 </div>
-                             </a>
-                             <div class="dropdown-menu py-0 content-dd dropdown-menu-animate-up overflow-hidden"
-                                 aria-labelledby="drop2">
-
-                                 <div class="py-3 px-4 bg-secondary">
-                                     <div class="mb-0 fs-6 fw-medium text-white">Messages</div>
-                                     <div class="mb-0 fs-2 fw-medium text-white">You have 5 new messages</div>
-                                 </div>
-                                 <div class="message-body" data-simplebar>
-                                     <a href="javascript:void(0)"
-                                         class="p-3 d-flex align-items-center dropdown-item gap-3 border-bottom">
-                                         <span class="user-img position-relative d-inline-block">
-                                             <img src="../assets/images/profile/user-2.jpg" alt="user"
-                                                 class="rounded-circle w-100 round-40" />
-                                             <span
-                                                 class="profile-status bg-success position-absolute rounded-circle"></span>
-                                         </span>
-                                         <div class="w-80">
-                                             <div class="d-flex align-items-center justify-content-between">
-                                                 <h6 class="mb-1">Mathew Anderson</h6>
-                                                 <span class="fs-2 d-block text-muted">9:30 AM</span>
-                                             </div>
-                                             <span class="fs-2 d-block text-truncate text-muted">Just see the my new
-                                                 admin!</span>
-                                         </div>
-                                     </a>
-                                     <a href="javascript:void(0)"
-                                         class="p-3 d-flex align-items-center dropdown-item gap-3 border-bottom">
-                                         <span class="user-img position-relative d-inline-block">
-                                             <img src="../assets/images/profile/user-3.jpg" alt="user"
-                                                 class="rounded-circle w-100 round-40" />
-                                             <span
-                                                 class="profile-status bg-success position-absolute rounded-circle"></span>
-                                         </span>
-                                         <div class="w-80">
-                                             <div class="d-flex align-items-center justify-content-between">
-                                                 <h6 class="mb-1">Bianca Anderson</h6>
-                                                 <span class="fs-2 d-block text-muted">9:10 AM</span>
-                                             </div>
-
-                                             <span class="fs-2 d-block text-truncate text-muted">Just a reminder that
-                                                 you have event</span>
-                                         </div>
-                                     </a>
-                                 </div>
-                                 <div class="p-3">
-                                     <a class="d-flex btn btn-secondary  align-items-center justify-content-center gap-2"
-                                         href="javascript:void(0);">
-                                         <span>Check all Messages</span>
-                                         <iconify-icon icon="solar:alt-arrow-right-outline"
-                                             class="iconify-sm"></iconify-icon>
-                                     </a>
-                                 </div>
-
-                             </div>
-                         </li>
-                     </ul>
                      <ul class="navbar-nav gap-2 flex-row ms-auto align-items-center justify-content-center">
 
                          <li class="nav-item nav-icon-hover-bg rounded-circle">
@@ -155,72 +89,6 @@
                              </a>
                          </li>
 
-{{-- 
-                         <li class="nav-item hover-dd dropdown  nav-icon-hover-bg rounded-circle d-none d-lg-block">
-                             <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
-                                 aria-expanded="false">
-                                 <iconify-icon icon="solar:inbox-line-line-duotone"></iconify-icon>
-                                 <div class="notify">
-                                     <span class="heartbit"></span>
-                                     <span class="point"></span>
-                                 </div>
-                             </a>
-                             <div class="dropdown-menu py-0 content-dd dropdown-menu-animate-up dropdown-menu-end overflow-hidden"
-                                 aria-labelledby="drop2">
-
-                                 <div class="py-3 px-4 bg-secondary">
-                                     <div class="mb-0 fs-6 fw-medium text-white">Messages</div>
-                                     <div class="mb-0 fs-2 fw-medium text-white">You have 5 new messages</div>
-                                 </div>
-                                 <div class="message-body" data-simplebar>
-                                     <a href="javascript:void(0)"
-                                         class="p-3 d-flex align-items-center dropdown-item gap-3 border-bottom">
-                                         <span class="user-img position-relative d-inline-block">
-                                             <img src="../assets/images/profile/user-2.jpg" alt="user"
-                                                 class="rounded-circle w-100 round-40" />
-                                             <span
-                                                 class="profile-status bg-success position-absolute rounded-circle"></span>
-                                         </span>
-                                         <div class="w-80">
-                                             <div class="d-flex align-items-center justify-content-between">
-                                                 <h6 class="mb-1">Mathew Anderson</h6>
-                                                 <span class="fs-2 d-block text-muted">9:30 AM</span>
-                                             </div>
-                                             <span class="fs-2 d-block text-truncate text-muted">Just see the my new
-                                                 admin!</span>
-                                         </div>
-                                     </a>
-                                     <a href="javascript:void(0)"
-                                         class="p-3 d-flex align-items-center dropdown-item gap-3 border-bottom">
-                                         <span class="user-img position-relative d-inline-block">
-                                             <img src="../assets/images/profile/user-3.jpg" alt="user"
-                                                 class="rounded-circle w-100 round-40" />
-                                             <span
-                                                 class="profile-status bg-success position-absolute rounded-circle"></span>
-                                         </span>
-                                         <div class="w-80">
-                                             <div class="d-flex align-items-center justify-content-between">
-                                                 <h6 class="mb-1">Bianca Anderson</h6>
-                                                 <span class="fs-2 d-block text-muted">9:10 AM</span>
-                                             </div>
-
-                                             <span class="fs-2 d-block text-truncate text-muted">Just a reminder that
-                                                 you have event</span>
-                                         </div>
-                                     </a>
-                                 </div>
-                                 <div class="p-3">
-                                     <a class="d-flex btn btn-secondary  align-items-center justify-content-center gap-2"
-                                         href="javascript:void(0);">
-                                         <span>Check all Messages</span>
-                                         <iconify-icon icon="solar:alt-arrow-right-outline"
-                                             class="iconify-sm"></iconify-icon>
-                                     </a>
-                                 </div>
-
-                             </div>
-                         </li> --}}
-
                          <!-- ------------------------------- -->
                          <!-- end notification Dropdown -->
                          <!-- ------------------------------- -->
@@ -229,8 +97,8 @@
                          <!-- start profile Dropdown -->
                          <!-- ------------------------------- -->
                          <li class="nav-item hover-dd dropdown">
-                             <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
-                                 aria-expanded="false">
+                             <a class="nav-link nav-icon-hover  dropdown-toggle" href="javascript:void(0)"
+                                 id="drop2" role="button" aria-expanded="false" data-bs-toggle="dropdown">
                                  <img src="{{ asset(Auth::user()->foto) }}" class="rounded-circle"
                                      style="width: 40px; height: 40px; object-fit: cover;" alt="User Profile" />
 
@@ -240,8 +108,8 @@
                                  <div class="profile-dropdown position-relative" data-simplebar>
                                      <div class=" py-3 border-bottom">
                                          <div class="d-flex align-items-center px-3">
-                                             <img src="{{ asset(Auth::user()->foto) }}"
-                                                 class="rounded-circle round-50" alt="User Profile" />
+                                             <img src="{{ asset(Auth::user()->foto) }}" class="rounded-circle round-50"
+                                                 alt="User Profile" />
                                              <div class="ms-3">
                                                  <h5 class="mb-1 fs-4"> {{ Auth::user()->nama }}</h5>
                                                  <p class="mb-0 fs-2 d-flex align-items-center text-muted">
@@ -253,27 +121,50 @@
                                      <div class="message-body pb-3">
 
                                          <div class="px-3">
-                                             <div
-                                                 class="py-8 px-3 d-flex justify-content-between dropdown-item align-items-center h6 mb-0  rounded-2 link">
-                                                 <a href="javascript:void(0)" class="">
-                                                     Mode
-                                                 </a>
-                                                 <div>
-                                                     <a class="moon dark-layout" href="javascript:void(0)">
-                                                         <iconify-icon icon="solar:moon-line-duotone"
-                                                             class="moon"></iconify-icon>
-                                                     </a>
-                                                     <a class="sun light-layout" href="javascript:void(0)">
-                                                         <iconify-icon icon="solar:sun-2-line-duotone"
-                                                             class="sun"></iconify-icon>
-                                                     </a>
+                                             @if (Auth::user()->role === 'dosen')
+                                                 <div class="ms-3">
+                                                     <div class="mt-3 d-flex align-items-center gap-2">
+                                                         @if (Auth::user()->dosen && Auth::user()->dosen->ttd_path)
+                                                             <img src="{{ asset(Auth::user()->dosen->ttd_path) }}"
+                                                                 alt="Tanda Tangan" width="100" class="mb-2" />
+                                                         @else
+                                                             <p class="text-muted mb-0">Tanda tangan belum ada</p>
+                                                         @endif
+
+                                                         <form
+                                                             action="{{ route('dosen.updateTtd', Auth::user()->dosen->id ?? 0) }}"
+                                                             method="POST" enctype="multipart/form-data"
+                                                             class="d-flex align-items-center gap-2 mb-0">
+                                                             @csrf
+                                                             @method('PUT')
+
+                                                             <input type="file" name="ttd_path" accept="image/*"
+                                                                 required class="form-control form-control-sm"
+                                                                 style="max-width: 180px;" />
+                                                             <button type="submit"
+                                                                 class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                                                                 <iconify-icon icon="mdi:upload" width="18"
+                                                                     height="18"></iconify-icon>
+                                                                 Upload
+                                                             </button>
+                                                         </form>
+                                                     </div>
+
                                                  </div>
-                                             </div>
+                                             @endif
+
                                              <div class="h6 mb-0 dropdown-item py-8 px-3 rounded-2 link">
-                                                 <a href="authentication-login.html"
-                                                     class=" d-flex  align-items-center ">
-                                                     Sign Out
+                                                 <a href="#"
+                                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                     <iconify-icon icon="mdi:logout" class="me-1"></iconify-icon>
+                                                     Logout
                                                  </a>
+
+                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                     class="d-none">
+                                                     @csrf
+                                                 </form>
+
                                              </div>
                                          </div>
                                      </div>

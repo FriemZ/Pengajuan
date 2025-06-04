@@ -20,7 +20,9 @@
                   d-block
                   position-relative
                 "
-                          id="dropdownMenuLink" aria-expanded="false"> {{ Auth::user()->nama }}</a>
+                          id="dropdownMenuLink" aria-expanded="false"> {{ Auth::user()->nama }} |
+                          {{ Auth::user()->dosen->nip ?? (Auth::user()->nim ?? '-') }}
+                      </a>
 
                   </div>
               </div>
@@ -49,7 +51,7 @@
                       </li>
 
                       <li class="sidebar-item">
-                          <a class="sidebar-link" href="pengajuan-surat.html">
+                          <a class="sidebar-link" href="/infopengajuan">
                               <iconify-icon icon="solar:document-add-line-duotone" class="aside-icon"></iconify-icon>
                               <span class="hide-menu">Detail Pengajuan</span>
                           </a>
@@ -62,6 +64,18 @@
                           <a class="sidebar-link" href="/verifikasi">
                               <iconify-icon icon="solar:checklist-linear" class="aside-icon"></iconify-icon>
                               <span class="hide-menu">Verifikasi Surat</span>
+                          </a>
+                      </li>
+                      <li class="sidebar-item">
+                          <a class="sidebar-link" href="/rekapitulasiM">
+                              <iconify-icon icon="solar:checklist-linear" class="aside-icon"></iconify-icon>
+                              <span class="hide-menu">Rekap Magang</span>
+                          </a>
+                      </li>
+                      <li class="sidebar-item">
+                          <a class="sidebar-link" href="/rekapitulasiS">
+                              <iconify-icon icon="solar:checklist-linear" class="aside-icon"></iconify-icon>
+                              <span class="hide-menu">Rekap Skripsi</span>
                           </a>
                       </li>
 
@@ -107,17 +121,6 @@
                       </li>
                       <hr>
                   @endif
-                  <!-- Logout -->
-                  <li class="sidebar-item mt-0">
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          @csrf
-                      </form>
-                      <a class="sidebar-link" href="#"
-                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                          <iconify-icon icon="solar:logout-linear" class="aside-icon"></iconify-icon>
-                          <span class="hide-menu">Keluar</span>
-                      </a>
-                  </li>
               </ul>
 
           </nav>

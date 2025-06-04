@@ -29,7 +29,6 @@ class MahasiswaController extends Controller
             'jurusans' => $jurusans,
         ]);
     }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -40,23 +39,17 @@ class MahasiswaController extends Controller
             'conf_pass' => 'required|string|same:password',
             'jurusan_id' => 'nullable|exists:jurusans,id',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
-            'ttd_path' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ]);
 
-        // Simpan foto jika ada
+        // Inisialisasi default path
         $fotoPath = null;
-        if ($request->hasFile('foto')) {
-            // Menggunakan nama asli untuk foto
-            $fotoFile = $request->file('foto');
-            $fotoPath = $fotoFile->storeAs('images', 'foto_' . time() . '.' . $fotoFile->getClientOriginalExtension(), 'public');
-        }
 
-        // Simpan tanda tangan jika ada
-        $ttdPath = null;
-        if ($request->hasFile('ttd_path')) {
-            // Menggunakan nama asli untuk tanda tangan
-            $ttdFile = $request->file('ttd_path');
-            $ttdPath = $ttdFile->storeAs('ttd', 'ttd_' . time() . '.' . $ttdFile->getClientOriginalExtension(), 'public');
+        // Simpan foto jika ada
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $fotoName = 'foto_' . time() . '.' . $foto->getClientOriginalExtension();
+            $foto->move(public_path('images'), $fotoName);
+            $fotoPath = 'images/' . $fotoName; // Simpan path relatif
         }
 
         // Simpan data user
@@ -65,14 +58,15 @@ class MahasiswaController extends Controller
             'email' => $request->email,
             'nim' => $request->nim,
             'password' => Hash::make($request->password),
-            'jurusan_id' => $request->jurusan_id, // pastikan ini diisi
-            'foto' => $fotoPath, // Simpan path foto
-            'role' => 'mahasiswa', // auto role mahasiswa
-            'conf_pass' => $request->conf_pass, // pastikan conf_pass diisi
+            'jurusan_id' => $request->jurusan_id,
+            'foto' => $fotoPath,
+            'role' => 'mahasiswa',
         ]);
 
         return redirect()->back()->with('success', 'User created successfully.');
     }
+
+
 
 
 

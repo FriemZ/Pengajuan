@@ -9,8 +9,7 @@ class PengajuanDetailController extends Controller
 {
     public function index()
     {
-        $details = PengajuanDetail::with('pengajuan')->get();
-        return view('pengajuan_detail.index', compact('details'));
+        return view('dashboard.infopengajuan');
     }
 
     public function store(Request $request)

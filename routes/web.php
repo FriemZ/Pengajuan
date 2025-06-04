@@ -22,6 +22,9 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::put('/dosen/{id}/update-ttd', [DashboardController::class, 'updateTtd'])->name('dosen.updateTtd');
+
+
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -43,6 +46,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/mahasiswas/{id}', [MahasiswaController::class, 'update'])->name('mahasiswas.update');
     Route::delete('/mahasiswas/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswas.destroy');
 
+    Route::get('/rekapitulasiM', [PengajuanController::class, 'rekapMagang'])->name('rekapitulasi.rekapMagang');
+    Route::get('/rekapitulasiS', [PengajuanController::class, 'rekapSkripsi'])->name('rekapitulasi.rekapSkripsi');
+    Route::get('/download-surat/{filename}', [PengajuanController::class, 'downloadSurat'])->name('surat.download');
+
+
+
     Route::get('/dosens', [DosenController::class, 'index'])->name('dosens.index');
     Route::post('/dosens', [DosenController::class, 'store'])->name('dosens.store');
     Route::put('/dosens/{id}', [DosenController::class, 'update'])->name('dosens.update');
@@ -53,12 +62,16 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('/pengajuan', [PengajuanController::class, 'create'])->name('pengajuan.create');
+    Route::get('/infopengajuan', [PengajuanController::class, 'info'])->name('pengajuan.info');
     Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('pengajuan.store');
     Route::post('/surat/{pengajuanId}', [PengajuanController::class, 'buatSurat'])->name('buatSurat');
 
     Route::get('/verifikasi', [PengajuanController::class, 'indexVerifikasi'])->name('verifikasi');
     Route::post('/pengajuan/{id}/setuju', [PengajuanController::class, 'buatSurat'])->name('buatSurat');
     Route::put('/pengajuan/{id}/tolak', [PengajuanController::class, 'tolakPengajuan'])->name('tolakPengajuan');
+    Route::put('/pengajuan/{id}/disetujui', [PengajuanController::class, 'setujuPengajuan'])->name('setujuPengajuan');
+    Route::put('/pengajuan/set-dosen/{id}', [PengajuanController::class, 'setDosen'])->name('pengajuan.setDosen');
+
 
     Route::get('/cek', function () {
         $pengajuan = Pengajuan::with([

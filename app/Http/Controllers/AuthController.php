@@ -35,12 +35,32 @@ class AuthController extends Controller
 
         $user = User::find($request->userId);
 
+        // Ambil jumlah percobaan dari session
+        $attempts = session()->get('login_attempts', 0);
+
+        // Cek password
         if (!$user || !Hash::check($request->password, $user->password)) {
+            $attempts++;
+            session()->put('login_attempts', $attempts);
+
+            // Jika lebih dari 2 percobaan salah (ke-3 kalinya)
+            if ($attempts >= 3) {
+                session()->forget('login_attempts'); // reset
+                return response()->json([
+                    'success' => false,
+                    'redirect' => url('/'), // arahkan ke halaman awal atau halaman error
+                    'message' => 'Terlalu banyak percobaan. Silakan coba lagi nanti.',
+                ]);
+            }
+
             return response()->json([
                 'success' => false,
-                'message' => 'Password salah',
+                'message' => 'Password salah. Percobaan ke-' . $attempts . ' dari 3.',
             ]);
         }
+
+        // Jika berhasil, reset percobaan
+        session()->forget('login_attempts');
 
         // Login pengguna
         Auth::login($user);

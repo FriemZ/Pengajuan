@@ -19,10 +19,12 @@ return new class extends Migration
             $table->enum('tipe', ['sendiri', 'kelompok']);
             $table->enum('status', ['menunggu', 'disetujui', 'ditolak'])->default('menunggu');
             $table->text('keperluan');
+            $table->text('catatan')->nullable();
             $table->string('instansi')->nullable(); // Hanya untuk magang
             $table->string('alamat_instansi')->nullable(); // Menambahkan alamat_instansi
             $table->string('jangka_waktu')->nullable(); // Menambahkan jangka_waktu
             $table->string('file')->nullable(); // Hanya untuk file skripsi
+            $table->foreignId('dosen_id')->nullable()->constrained('dosens')->onDelete('cascade');
             $table->timestamps();
         });
 

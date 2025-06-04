@@ -6,11 +6,12 @@ use App\Models\User;
 use App\Models\Dosen;
 use App\Models\Anggota;
 use App\Models\Pengajuan;
+use App\Models\Koordinator;
+use Illuminate\Support\Str;
 use App\Models\DokumenSurat;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
 class PengajuanController extends Controller
@@ -20,10 +21,45 @@ class PengajuanController extends Controller
     // Menampilkan form pengajuan
     public function create()
     {
+        // Ambil semua pengajuan dengan jenis magang
+        $pengajuanMagangIds = Pengajuan::where('jenis', 'magang')->pluck('id');
+
+        // Ambil user_id pengaju utama yang sudah ada di pengajuan magang
+        $userPengajuMagangIds = Pengajuan::where('jenis', 'magang')->pluck('user_id')->toArray();
+
+        // Ambil user_id anggota yang sudah ada di pengajuan magang
+        $userAnggotaMagangIds = Anggota::whereIn('pengajuan_id', $pengajuanMagangIds)
+            ->pluck('user_id')
+            ->toArray();
+
+        // Gabungkan semua user yang sudah pernah ikut pengajuan magang (pengaju utama + anggota)
+        $excludeIds = array_merge($userPengajuMagangIds, $userAnggotaMagangIds);
+
+        // Tambahkan juga user login agar tidak muncul di pilihan
+        $excludeIds = array_merge($excludeIds, [auth()->id()]);
+
+        // Ambil mahasiswa yang belum pernah ikut pengajuan magang dan bukan diri sendiri
         $mahasiswas = User::where('role', 'mahasiswa')
-            ->where('id', '!=', auth()->id()) // tidak termasuk dirinya sendiri
+            ->whereNotIn('id', $excludeIds)
             ->get();
+
         return view('dashboard.pengajuan', compact('mahasiswas'));
+    }
+
+    public function info()
+    {
+        $query = Pengajuan::with(['user', 'dokumenSurat'])
+            ->whereIn('status', ['disetujui', 'ditolak'])
+            ->orderByDesc('updated_at');
+
+        if (auth()->user()->role == 'mahasiswa') {
+            $query->where('user_id', auth()->id());
+        }
+        // kalau admin/dosen biarkan tanpa filter, atau bisa tambah filter lain
+
+        $pengajuans = $query->get();
+
+        return view('dashboard.infopengajuan', compact('pengajuans'));
     }
 
     public function indexVerifikasi(Request $request)
@@ -32,17 +68,31 @@ class PengajuanController extends Controller
 
         $pengajuans = Pengajuan::with(['user', 'dokumenSurat'])
             ->where('jenis', $jenis)
+            ->where('status', 'menunggu') // ✅ hanya yang status menunggu
             ->orderByDesc('created_at')
             ->get();
 
-        // Fetch dosens who have an active koordinator
-        $dosens = Dosen::whereHas('koordinatorAktif', function ($query) {
-            $query->where('aktif', true); // Only dosens with an active koordinator
-        })->get();
+        // ✅ Ambil koordinator aktif beserta dosen dan posisi jabatannya
+        $koordinators = Koordinator::with(['dosen.user', 'jobPosition'])
+            ->where('aktif', true)
+            ->get()
+            ->groupBy(fn($item) => $item->jobPosition->nama ?? 'Tanpa Jabatan');
 
-        return view('dashboard.verif', compact('pengajuans', 'dosens', 'jenis'));
+        return view('dashboard.verif', compact('pengajuans', 'koordinators', 'jenis'));
     }
 
+    public function setDosen(Request $request, $id)
+    {
+        $request->validate([
+            'dosen_id' => 'required|exists:dosens,id',
+        ]);
+
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->dosen_id = $request->dosen_id;
+        $pengajuan->save();
+
+        return response()->json(['message' => 'Dosen pembimbing berhasil disimpan.']);
+    }
 
 
     public function buatSurat(Request $request, $pengajuanId)
@@ -86,15 +136,15 @@ class PengajuanController extends Controller
         return redirect()->back()->with('success', 'Surat berhasil dibuat dan disimpan di public/surat.');
     }
 
-    public function tolakPengajuan($id)
-    {
-        $pengajuan = Pengajuan::findOrFail($id);
-        $pengajuan->status = 'ditolak';
-        $pengajuan->save();
+    // public function tolakPengajuan($id)
+    // {
+    //     $pengajuan = Pengajuan::findOrFail($id);
+    //     $pengajuan->status = 'ditolak';
+    //     $pengajuan->save();
 
-        return redirect()->route('admin.verifikasi', ['jenis' => $pengajuan->jenis])
-            ->with('success', 'Pengajuan ditolak.');
-    }
+    //     return redirect()->route('admin.verifikasi', ['jenis' => $pengajuan->jenis])
+    //         ->with('success', 'Pengajuan ditolak.');
+    // }
 
     public function setuju(Request $request, $id)
     {
@@ -122,14 +172,26 @@ class PengajuanController extends Controller
         return back()->with('success', 'Pengajuan disetujui & surat berhasil dibuat.');
     }
 
-    public function tolak($id)
+    public function setujuPengajuan(Request $request, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->status = 'disetujui';
+        $pengajuan->catatan = $request->catatan; // Boleh null
+        $pengajuan->save();
+
+        return back()->with('success', 'Pengajuan telah disetujui.');
+    }
+
+    public function tolakPengajuan(Request $request, $id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
         $pengajuan->status = 'ditolak';
+        $pengajuan->catatan = $request->catatan; // Boleh null
         $pengajuan->save();
 
         return back()->with('error', 'Pengajuan telah ditolak.');
     }
+
 
 
     public function store(Request $request)
@@ -196,5 +258,44 @@ class PengajuanController extends Controller
         }
 
         return back()->with('success', 'Pengajuan berhasil dikirim.');
+    }
+
+
+
+    public function rekapMagang()
+    {
+
+        $pengajuans = Pengajuan::with(['user.jurusan', 'dokumenSurat'])
+            ->where('jenis', 'magang')
+            ->where('status', 'disetujui') // filter berdasarkan status
+            ->orderByDesc('created_at')
+            ->get();
+
+
+        // Fetch dosens who have an active koordinator
+        $dosens = Dosen::whereHas('koordinatorAktif', function ($query) {
+            $query->where('aktif', true); // Only dosens with an active koordinator
+        })->get();
+
+        return view('dashboard.rekapitulasimagang', compact('pengajuans', 'dosens'));
+    }
+
+
+    public function rekapSkripsi()
+    {
+
+        $pengajuans = Pengajuan::with(['user.jurusan'])
+            ->where('jenis', 'skripsi')
+            ->where('status', 'disetujui') // filter berdasarkan status
+            ->orderByDesc('created_at')
+            ->get();
+
+
+        // Fetch dosens who have an active koordinator
+        $dosens = Dosen::whereHas('koordinatorAktif', function ($query) {
+            $query->where('aktif', true); // Only dosens with an active koordinator
+        })->get();
+
+        return view('dashboard.rekapitulasiskiripsi', compact('pengajuans', 'dosens'));
     }
 }
