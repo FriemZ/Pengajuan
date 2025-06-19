@@ -1,4 +1,4 @@
- <!--  Header Start -->
+a <!--  Header Start -->
  <header class="topbar rounded-0 border-0 bg-primary">
      <div class="with-vertical"><!-- ---------------------------------- -->
          <!-- Start Vertical Layout Header -->
@@ -108,8 +108,9 @@
                                  <div class="profile-dropdown position-relative" data-simplebar>
                                      <div class=" py-3 border-bottom">
                                          <div class="d-flex align-items-center px-3">
-                                             <img src="{{ asset(Auth::user()->foto) }}" class="rounded-circle round-50"
-                                                 alt="User Profile" />
+                                             <a href="/profil" class="d-flex align-items-center text-decoration-none">
+                                                 <img src="{{ asset(Auth::user()->foto) }}"
+                                                     class="rounded-circle round-50" alt="User Profile" /></a>
                                              <div class="ms-3">
                                                  <h5 class="mb-1 fs-4"> {{ Auth::user()->nama }}</h5>
                                                  <p class="mb-0 fs-2 d-flex align-items-center text-muted">

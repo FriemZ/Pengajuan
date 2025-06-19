@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Dosen;
+use App\Models\Jurusan;
+use App\Models\Mahasiswa;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,9 +16,48 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $jumlahDosen = Dosen::count();
+        $jumlahMahasiswa = User::where('role', 'mahasiswa')->count(); // ambil dari tabel users
+        $jumlahJurusan = Jurusan::count();
+        $jumlahPengajuan = Pengajuan::where('status','menunggu')->count();
 
-        return view('dashboard.dashboard');
+        $pengajuans = [];
+
+        if (auth()->user()->role === 'dosen') {
+            $dosenId = auth()->user()->dosen->id ?? null;
+
+            if ($dosenId) {
+                $pengajuans = Pengajuan::with('user') // relasi ke mahasiswa
+                    ->where('jenis', 'skripsi')
+                    ->where('dosen_id', $dosenId)
+                    ->where('status', 'menunggu')
+                    ->orderByDesc('created_at')
+                    ->get();
+            }
+        }
+
+        return view('dashboard.dashboard', compact('pengajuans', 'jumlahDosen', 'jumlahMahasiswa', 'jumlahJurusan', 'jumlahPengajuan'));
     }
+
+    public function verifikasi(Request $request, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+
+        if (auth()->user()->dosen->id != $pengajuan->dosen_id) {
+            abort(403); // Hanya dosen terkait yang bisa verifikasi
+        }
+
+        $request->validate([
+            'status' => 'in:disetujui,ditolak',
+        ]);
+        $pengajuan->status = $request->status;
+        $pengajuan->catatan = $request->catatan;
+        $pengajuan->save();
+
+        return redirect()->back()->with('success', 'Status pengajuan berhasil diperbarui.');
+    }
+
+
 
     public function updateTtd(Request $request, $id)
     {

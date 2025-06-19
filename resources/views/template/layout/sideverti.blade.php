@@ -35,13 +35,15 @@
                       <span class="hide-menu">Menu Utama</span>
                   </li>
 
-                  <li class="sidebar-item">
-                      <a class="sidebar-link" href="/dashboard">
-                          <iconify-icon icon="solar:box-minimalistic-linear" class="aside-icon"></iconify-icon>
-                          <span class="hide-menu">Dashboard</span>
-                      </a>
-                  </li>
 
+                  @if (auth()->user()->role === 'dosen')
+                      <li class="sidebar-item">
+                          <a class="sidebar-link" href="/dashboard">
+                              <iconify-icon icon="solar:box-minimalistic-linear" class="aside-icon"></iconify-icon>
+                              <span class="hide-menu">Dashboard</span>
+                          </a>
+                      </li>
+                  @endif
                   @if (auth()->user()->role === 'mahasiswa')
                       <li class="sidebar-item">
                           <a class="sidebar-link" href="/pengajuan">
@@ -60,6 +62,12 @@
 
 
                   @if (auth()->user()->role === 'admin')
+                      <li class="sidebar-item">
+                          <a class="sidebar-link" href="/dashboard">
+                              <iconify-icon icon="solar:box-minimalistic-linear" class="aside-icon"></iconify-icon>
+                              <span class="hide-menu">Dashboard</span>
+                          </a>
+                      </li>
                       <li class="sidebar-item">
                           <a class="sidebar-link" href="/verifikasi">
                               <iconify-icon icon="solar:checklist-linear" class="aside-icon"></iconify-icon>

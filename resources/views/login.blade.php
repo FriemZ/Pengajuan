@@ -27,11 +27,11 @@
         <a href="javascript:void(0)" class="text-nowrap logo-img d-flex align-items-center">
             <b class="logo-icon">
                 <!-- Dark Logo icon -->
-                <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/logos/logo-icon.svg"
-                    alt="loader" class="dark-logo lds-ripple img-fluid" />
+                <img src="assets/images/uniba.png" alt="loader" class="dark-logo lds-ripple img-fluid"
+                    style="width: 70px;" />
                 <!-- Light Logo icon -->
-                <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/logos/logo-light-icon.svg"
-                    alt="loader" class="light-logo lds-ripple img-fluid" />
+                <img src="assets/images/uniba.png" alt="loader" class="light-logo lds-ripple img-fluid"
+                    style="width: 70px;" />
             </b>
         </a>
     </div>
@@ -45,22 +45,11 @@
                 <a href="frontend-landingpage.html" class="text-nowrap logo-img d-flex align-items-center gap-2">
                     <b class="logo-icon">
                         <!-- Dark Logo icon -->
-                        <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/logos/logo-icon.svg"
-                            alt="homepage" class="dark-logo" />
+                        <img src="assets/images/logo-uniba.jpg" alt="homepage" class="dark-logo w-50" />
                         <!-- Light Logo icon -->
-                        <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/logos/logo-light-icon.svg"
-                            alt="homepage" class="light-logo" />
+                        <img src="assets/images/logo-uniba.jpg" alt="homepage" class="light-logo w-50" />
                     </b>
                     <!--End Logo icon -->
-                    <!-- Logo text -->
-                    <span class="logo-text">
-                        <!-- dark Logo text -->
-                        <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/logos/logo-text.svg"
-                            alt="homepage" class="dark-logo ps-2" />
-                        <!-- Light Logo text -->
-                        <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/logos/logo-light-text.svg"
-                            class="light-logo ps-2" alt="homepage" />
-                    </span>
                 </a>
 
             </div>
@@ -82,7 +71,9 @@
                             <div class="card-body bg-white rounded-4 position-relative z-1">
                                 <div class="row justify-content-between align-items-center">
                                     <div class="col-sm-6">
-                                        <h5 class="fw-semibold mb-9 fs-5 ">Welcome back, please enter your name!</h5>
+                                        <h5 class="fw-semibold mb-9 fs-5">
+                                            Silakan masukkan nama Anda
+                                        </h5>
                                         <form id="nameForm">
                                             <div class="input-group mb-3">
                                                 <input type="text" class="form-control" id="nama"
@@ -277,7 +268,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <h2 class="fs-15 fw-semibold mb-0 text-center mb-5 mb-md-12">
-                            Frequently asked questions
+                            Paling Sering Ditanyakan
                         </h2>
                         <div class="accordion faq-accordion" id="accordionExample1">
                             <div class="accordion-item">
@@ -285,23 +276,25 @@
                                     <button class="accordion-button fs-5" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true"
                                         aria-controls="collapseOne">
-                                        What is included with my purchase?
+                                        Bagaimana cara mengajukan surat pengantar magang atau skripsi melalui website
+                                        ini?
                                     </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show"
                                     data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                            commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum
-                                            dolore
-                                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                            sunt in
-                                            culpa qui officia deserunt mollit anim id est laborum.
+                                            Silakan login menggunakan akun yang telah terdaftar, lalu pilih menu
+                                            <strong>Pengajuan Surat</strong>.
+                                            Setelah itu, isi formulir pengajuan sesuai kebutuhan (magang atau skripsi),
+                                            dan unggah dokumen pendukung jika diperlukan.
+                                            Setelah semua data terisi lengkap, klik tombol <strong>Kirim
+                                                Pengajuan</strong> untuk memproses permintaan Anda.
+                                        </p>
+                                        <p>
+                                            Untuk pengajuan skripsi, silakan <a href="form skripsi.doc"
+                                                target="_blank">unduh formulir pengajuan skripsi</a> dan lengkapi
+                                            sesuai petunjuk sebelum mengajukan.
                                         </p>
                                     </div>
                                 </div>
@@ -311,23 +304,16 @@
                                     <button class="accordion-button collapsed fs-5" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseFour"
                                         aria-expanded="false" aria-controls="collapseFour">
-                                        Can I customize the admin dashboard template to match my brand?
+                                        Berapa lama proses verifikasi pengajuan oleh dosen atau admin?
                                     </button>
                                 </h2>
                                 <div id="collapseFour" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                            commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum
-                                            dolore
-                                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                            sunt in
-                                            culpa qui officia deserunt mollit anim id est laborum.
+                                            Proses verifikasi biasanya memakan waktu 1–3 hari kerja. Anda akan menerima
+                                            notifikasi melalui sistem jika pengajuan telah disetujui atau ditolak.
+                                            Silakan cek status pengajuan secara berkala di halaman dashboard Anda.
                                         </p>
                                     </div>
                                 </div>
@@ -337,23 +323,16 @@
                                     <button class="accordion-button collapsed fs-5" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseFive"
                                         aria-expanded="false" aria-controls="collapseFive">
-                                        Are there any restrictions on using the template?
+                                        Apa yang harus saya lakukan jika pengajuan saya ditolak?
                                     </button>
                                 </h2>
                                 <div id="collapseFive" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                            commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum
-                                            dolore
-                                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                            sunt in
-                                            culpa qui officia deserunt mollit anim id est laborum.
+                                            Jika pengajuan Anda ditolak, sistem akan menampilkan alasan penolakan.
+                                            Silakan perbaiki data atau dokumen yang diminta, lalu lakukan pengajuan
+                                            ulang dengan mengikuti petunjuk yang diberikan.
                                         </p>
                                     </div>
                                 </div>
@@ -363,23 +342,16 @@
                                     <button class="accordion-button collapsed fs-5" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
                                         aria-controls="collapseSix">
-                                        How can I get support after purchase?
+                                        Di mana saya bisa mengunduh surat pengantar yang sudah disetujui?
                                     </button>
                                 </h2>
                                 <div id="collapseSix" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionExample1">
                                     <div class="accordion-body">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                            commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum
-                                            dolore
-                                            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                            sunt in
-                                            culpa qui officia deserunt mollit anim id est laborum.
+                                            Setelah pengajuan disetujui oleh dosen dan admin, surat pengantar akan
+                                            tersedia di menu Detail Pengajuan. Anda dapat mengunduh file surat tersebut
+                                            dalam format PDF langsung dari halaman tersebut.
                                         </p>
                                     </div>
                                 </div>
@@ -397,46 +369,54 @@
     <!-- ------------------------------------- -->
     <footer class="bg-dark">
         <div class="container-fluid">
-            <div class="d-flex justify-content-between flex-md-nowrap flex-wrap py-13 border-top border-dark-subtle">
-                <div class="d-flex align-items-center gap-3">
-                    <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/logos/logo-light-icon.svg"
-                        alt="logo" width="30">
-                    <p class="text-white opacity-50 mb-0">All rights reserved by MaterialPro. </p>
+            <div
+                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4 border-top border-dark-subtle">
+                <!-- Logo & Hak Cipta -->
+                <div class="d-flex align-items-center gap-3 mb-3 mb-md-0">
+                    <img src="assets/images/uniba.png" class="img-fluid rounded-circle" alt="logo"
+                        width="30" height="30">
+                    <p class="text-white opacity-75 mb-0">© All rights reserved by <a href="https://unibamadura.ac.id/page" class="text-white">UNIBA</a></p>
                 </div>
-                <div class="col-md-3 col-6 mb-7 mb-md-0">
-                    <h3 class="fs-4 text-white fw-semibold mb-7">Follow us</h3>
-                    <div class="d-flex gap-9">
-                        <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-title="Facebook">
-                            <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/frontend-pages/icon-facebook.svg"
-                                alt="facebook">
-                        </a>
-                        <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-title="Twitter">
-                            <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/frontend-pages/icon-twitter.svg"
-                                alt="twitter">
-                        </a>
-                        <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-title="Instagram">
-                            <img src="https://bootstrapdemos.wrappixel.com/materialpro/dist/assets/images/frontend-pages/icon-instagram.svg"
-                                alt="instagram">
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <p class="text-white mb-0">
-                        <span class="opacity-50">Produced by</span>
-                        <a href="https://www.wrappixel.com/" class="text-white link-primary">Wrappixel</a>.
-                    </p>
+
+                <!-- Ikon Sosial Media -->
+                <div class="d-flex gap-3">
+                    <!-- YouTube -->
+                    <a href="https://youtube.com" target="_blank" data-bs-toggle="tooltip" data-bs-title="YouTube">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png" alt="YouTube"
+                            width="24" height="24">
+                    </a>
+
+                    <!-- Twitter (ubah ke versi putih) -->
+                    <a href="https://twitter.com" target="_blank" data-bs-toggle="tooltip" data-bs-title="Twitter">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/twitter--v1.png" alt="Twitter"
+                            width="24" height="24">
+                    </a>
+
+                    <!-- Instagram (ubah ke versi putih) -->
+                    <a href="https://instagram.com" target="_blank" data-bs-toggle="tooltip"
+                        data-bs-title="Instagram">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"
+                            width="24" height="24">
+                    </a>
+
+                    <!-- Website -->
+                    <a href="https://mywebsite-friemz.turbo-main.com/" target="_blank" data-bs-toggle="tooltip"
+                        data-bs-title="Website">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/domain.png" alt="Website"
+                            width="24" height="24">
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
+
     <!-- ------------------------------------- -->
     <!-- Footer End -->
     <!-- ------------------------------------- -->
 
     <!-- Scroll Top -->
-    <a href="javascript:void(0)"
-        class="top-btn btn btn-primary d-flex align-items-center justify-content-center round-54 p-0 rounded-circle">
-        <i class="ti ti-arrow-up fs-7"></i>
+    <a href="" class="top-btn btn d-flex align-items-center justify-content-center round-54 p-0 rounded-circle"
+        style="z-index: -3;">
     </a>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

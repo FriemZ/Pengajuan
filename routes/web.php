@@ -2,15 +2,16 @@
 
 use App\Models\Pengajuan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\DokumenSuratController;
-use App\Http\Controllers\JobController;
 use App\Http\Controllers\PengajuanDetailController;
 
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
@@ -22,9 +23,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::put('/pengajuans/verifikasi/{id}', [DashboardController::class, 'verifikasi'])->name('pengajuans.verifikasi');
     Route::put('/dosen/{id}/update-ttd', [DashboardController::class, 'updateTtd'])->name('dosen.updateTtd');
 
-
+ 
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -71,6 +73,9 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/pengajuan/{id}/tolak', [PengajuanController::class, 'tolakPengajuan'])->name('tolakPengajuan');
     Route::put('/pengajuan/{id}/disetujui', [PengajuanController::class, 'setujuPengajuan'])->name('setujuPengajuan');
     Route::put('/pengajuan/set-dosen/{id}', [PengajuanController::class, 'setDosen'])->name('pengajuan.setDosen');
+
+    Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');
+    Route::post('/profil/update', [ProfilController::class, 'update'])->name('profil.update');
 
 
     Route::get('/cek', function () {

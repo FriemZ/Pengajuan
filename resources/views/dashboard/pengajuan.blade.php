@@ -8,9 +8,9 @@
             <div class="col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Activitiy</h4>
+                        <h4 class="card-title">Pengajuan Surat</h4>
                         <p class="card-subtitle">
-                            Skirpsi n magang
+                            Skirpsi dan magang
                         </p>
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs profile-tab nav-justified gap-9 my-7" role="tablist">
@@ -34,6 +34,11 @@
                         <div class="tab-content">
                             {{-- FORM SKRIPSI --}}
                             <div class="tab-pane" id="skripsi" role="tabpanel">
+                                <p>
+                                    Untuk pengajuan skripsi, silakan <a href="form skripsi.doc" target="_blank">unduh
+                                        formulir pengajuan skripsi ini</a> dan lengkapi
+                                    sesuai petunjuk sebelum mengajukan.
+                                </p>
                                 <form action="{{ route('pengajuan.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="jenis" value="skripsi">

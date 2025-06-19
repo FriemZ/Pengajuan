@@ -65,9 +65,18 @@ class AuthController extends Controller
         // Login pengguna
         Auth::login($user);
 
+        // Tentukan redirect berdasarkan role
+        $redirectUrl = '/dashboard'; // default
+
+        if ($user->role === 'mahasiswa') {
+            $redirectUrl = url('/pengajuan');
+        } else {
+            $redirectUrl = url('/dashboard');
+        }
+
         return response()->json([
             'success' => true,
-            'redirect' => url('/dashboard'), // pastikan ini benar
+            'redirect' => $redirectUrl, // pastikan ini benar
         ]);
     }
 
