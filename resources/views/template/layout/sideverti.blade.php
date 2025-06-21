@@ -10,9 +10,10 @@
                   style="background: url(../assets/images/backgrounds/user-info.jpg) no-repeat;">
                   <!-- User profile image -->
                   <div class="profile-img">
-                      <img src="{{ asset(Auth::user()->foto) }}" class="rounded-circle round-50" alt="User Profile" />
-
+                      <img src="{{ Auth::user()->foto ? asset(Auth::user()->foto) : asset('assets/images/profile/user-1.jpg') }}"
+                          class="rounded-circle round-50" alt="User Profile" />
                   </div>
+
                   <!-- User profile text-->
                   <div class="profile-text hide-menu pt-1 dropdown">
                       <a href=""
@@ -38,7 +39,7 @@
 
                   @if (auth()->user()->role === 'dosen')
                       <li class="sidebar-item">
-                          <a class="sidebar-link" href="/dashboard">
+                          <a class="sidebar-link" href="dosen/dashboard">
                               <iconify-icon icon="solar:box-minimalistic-linear" class="aside-icon"></iconify-icon>
                               <span class="hide-menu">Dashboard</span>
                           </a>
@@ -63,7 +64,7 @@
 
                   @if (auth()->user()->role === 'admin')
                       <li class="sidebar-item">
-                          <a class="sidebar-link" href="/dashboard">
+                          <a class="sidebar-link" href="admin/dashboard">
                               <iconify-icon icon="solar:box-minimalistic-linear" class="aside-icon"></iconify-icon>
                               <span class="hide-menu">Dashboard</span>
                           </a>

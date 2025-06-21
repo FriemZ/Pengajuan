@@ -3,24 +3,21 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle($request, Closure $next, ...$roles)
     {
         if (!Auth::check()) {
             return redirect()->route('login');
         }
 
         $user = Auth::user();
-
-        if (in_array($user->role, $roles)) {
-            return $next($request);
+        if (!in_array($user->role, $roles)) {
+            return redirect()->back()->with('ferguso', 'TIDAK SEMUDAH ITU FERGUSO 😤');
         }
 
-        // Bisa ganti ini sesuai kebutuhan
-        return abort(403, 'Unauthorized');
+        return $next($request);
     }
 }

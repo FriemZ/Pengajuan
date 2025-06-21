@@ -61,18 +61,19 @@ class AuthController extends Controller
 
         // Jika berhasil, reset percobaan
         session()->forget('login_attempts');
+        session()->flash('show_toast', true); // hanya 1x tampil
 
         // Login pengguna
         Auth::login($user);
 
         // Tentukan redirect berdasarkan role
         $redirectUrl = '/dashboard'; // default
-
-        if ($user->role === 'mahasiswa') {
-            $redirectUrl = url('/pengajuan');
-        } else {
-            $redirectUrl = url('/dashboard');
-        }
+        $redirectUrl = match ($user->role) {
+            'admin'     => url('admin/dashboard'),
+            'dosen'     => url('dosen/dashboard'),
+            'mahasiswa' => url('/pengajuan'),
+            default     => url('/'),
+        };
 
         return response()->json([
             'success' => true,

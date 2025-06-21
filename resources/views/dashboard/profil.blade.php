@@ -14,7 +14,8 @@
                                 @csrf
                                 <!-- Foto Profil -->
                                 <div class="pro-img mb-3">
-                               <img src="{{ asset($user->foto) }}" alt="user" class="rounded-circle shadow-sm" width="112" height="112" />
+                                    <img src="{{ Auth::user()->foto ? asset(Auth::user()->foto) : asset('assets/images/profile/user-1.jpg') }}"
+                                        alt="user" class="rounded-circle shadow-sm" width="112" height="112" />
 
                                 </div>
                                 <div class="mb-3">

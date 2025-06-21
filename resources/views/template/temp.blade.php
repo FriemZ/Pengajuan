@@ -14,18 +14,36 @@
 </head>
 
 <body>
-    <div class="toast toast-onload align-items-center text-bg-secondary border-0" role="alert" aria-live="assertive"
-        aria-atomic="true">
-        <div class="toast-body hstack align-items-start gap-6">
-            <i class="ti ti-alert-circle fs-6"></i>
-            <div>
-                <h5 class="text-white fs-3 mb-1">Welcome to MaterialPro</h5>
-                <h6 class="text-white fs-2 mb-0">Easy to costomize the Template!!!</h6>
+    @if (session('show_toast') || session('ferguso'))
+        <div class="toast toast-onload align-items-center text-bg-{{ session('ferguso') ? 'danger' : 'secondary' }} border-0 show"
+            role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body hstack align-items-start gap-6">
+                <div>
+                    @if (session('ferguso'))
+                        <h5 class="text-white fs-3 mb-1">
+                            {{ session('ferguso') }}
+                        </h5>
+                    @else
+                        <h5 class="text-white fs-3 mb-1">
+                            Selamat datang, {{ Auth::user()->nama ?? 'Pengguna' }} 🎉
+                        </h5>
+                        <h6 class="text-white fs-2 mb-0">PENGAJUAN SURAT CEPAT!!!</h6>
+                    @endif
+                </div>
+                <button type="button" class="btn-close btn-close-white fs-2 m-0 ms-auto shadow-none"
+                    data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <button type="button" class="btn-close btn-close-white fs-2 m-0 ms-auto shadow-none"
-                data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-    </div>
+
+        <script>
+            setTimeout(() => {
+                document.querySelector('.toast')?.classList.remove('show');
+            }, 3000);
+        </script>
+    @endif
+
+
+
 
     <!-- Preloader -->
     <div class="preloader">
