@@ -4,44 +4,6 @@
     <div class="container-fluid">
         <!-- Row -->
         <div class="row">
-
-            @if (auth()->user()->role === 'mahasiswa')
-                <div class="col-lg-6 col-6">
-                    <div class="card text-bg-dark text-white">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <a href="JavaScript: void(0);">
-                                    <i class="ti ti-currency-ethereum display-6 text-white" title="ETH"></i>
-                                </a>
-                                <div class="ms-3">
-                                    <h4 class="card-title mb-0 text-white">
-                                        Ethereum
-                                    </h4>
-                                    <p class="text-white fs-4 mb-0 opacity-75">$3589.00k</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-6">
-                    <div class="card text-bg-primary text-white">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <a href="JavaScript: void(0);">
-                                    <i class="ti ti-currency-dogecoin display-6 text-white" title="LTC"></i>
-                                </a>
-                                <div class="ms-3">
-                                    <h4 class="card-title mb-0 text-white">
-                                        Dash
-                                    </h4>
-                                    <p class="text-white fs-4 mb-0 opacity-75">$900.00k</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
             @if (auth()->user()->role === 'dosen')
                 <div class="col-12 col-lg-12">
                     <div class="card">
